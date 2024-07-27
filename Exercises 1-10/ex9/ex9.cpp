@@ -1,5 +1,6 @@
 #include <iostream>
-int validate(std::string question){
+
+int validateInt(std::string question){
     //set up the variables needed
     std::string userInput;
     int input;
@@ -25,21 +26,25 @@ int validate(std::string question){
     
 }
 
+
+
+
+
 int main () {
-  
-    //convert to int!
-    int people = validate("How many people? ");
-    int pizza = validate("How many pizzas do you have ? ");
-    int slices = validate("How many slices per pizza? ");
+    //grab our length and width from user via a method
+ int length = validateInt("What's the length of the room (in feet)? ");
+ int width = validateInt("What's the width of the room (in feet)? ");
 
-    //set up math!
-    int totalSlice = pizza * slices;
-    int slicePerPerson = totalSlice / people;
-    int remaindingSlices = totalSlice % people;
 
-    std::cout << people << " people with " << pizza << " pizzas ("<<totalSlice<< " slices)\n"
-     << "Each person gets " << slicePerPerson << " pieces of pizza.\n" 
-     << "There are " << remaindingSlices << " leftover pieces.";
+ int gallonAmount = 350;
+ int area = length * width;
+ int gallonNeeded = area / gallonAmount;
+ if (area % gallonAmount != 0){
+    gallonNeeded++;
+
+ }
+ std::cout << "You will need to purchase " << gallonNeeded << " gallons of paint to cover " << area << " square feet.";
+ return 0;
 
 }
 
