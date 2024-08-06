@@ -38,7 +38,7 @@ int validateInt(std::string question){
 int calculate(int* ptr, int count){
     float subtotal, tax, total = 0;
     for  (int i = 0; i < count; i++) {
-        std::cout << i;
+        //std::cout << i;
         subtotal += (ptr[i] * ptr[i+1]); 
         i++;
     }
