@@ -16,7 +16,6 @@ float validateFloat(std::string question){
             //try turning it into an int
             input = std::stof(userInput);
             flag = true;
-            std::cout << input << "\n";
             return input;
         }
         catch(const std::invalid_argument& e){
