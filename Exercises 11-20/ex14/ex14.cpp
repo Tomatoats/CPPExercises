@@ -30,18 +30,18 @@ float calculate(float amount, std::string state){
     if (state == "WI"){
         fakeTax = amount * 0.055;
         tax = std::round(100 * fakeTax) / 100.0;
-        std::cout  << "hey this is tax" << tax << "\n"; 
+        //std::cout  << "hey this is tax" << tax << "\n"; 
     }
 
     total = amount + tax;
     tax = std::round(100 * tax) / 100.0;
-    std::cout << "tax out here is" << tax << "\n";
+    //std::cout << "tax out here is" << tax << "\n";
     return tax, total;
 }
 
 
 int output(float amount, float tax, float total, std::string state){
-    std::cout << "tax in output: " << tax << "\n";
+    //std::cout << "tax in output: " << tax << "\n";
 
     if (state != "WI"){
         std::cout << "The total is: $" << total;
@@ -49,7 +49,7 @@ int output(float amount, float tax, float total, std::string state){
     }
     tax = std::round(100 * tax) / 100.0;
     std::cout << "The subtotal is: $" << amount 
-    << "\nThe Tax is: $" << tax << "\nThe total is: $" 
+    << "\nThe Tax is: $" << (total - amount) << "\nThe total is: $" 
     << total;
     return 0;
 
@@ -67,7 +67,7 @@ int main () {
     //calculate it all
     float tax, total =  calculate(amount, state);
     //output to console
-    std::cout << "tax out here is " << tax << "\n";
+    //std::cout << "tax out here is " << tax << "\n";
     output(amount,tax, total, state);
     return 0;
 }
