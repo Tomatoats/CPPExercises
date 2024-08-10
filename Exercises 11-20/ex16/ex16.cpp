@@ -31,5 +31,5 @@ int main () {
     std::string result = (age >= 16) ? " " : " not ";
 
     std::cout << "You are" << result << "legally allowed to drive.";
-
+    return 0;
 }
