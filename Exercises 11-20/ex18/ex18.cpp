@@ -30,7 +30,7 @@ char validateChar(std::string question){
    //set up the variables needed
     char userInput;
     int input;
-    //set up flag, and a while that uses a try / catch for errors
+    //set up flag 
     bool flag = false;
     while (flag == false){
         //get user input
