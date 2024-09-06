@@ -1,21 +1,9 @@
 #include <iostream> 
 #include <map> // to store info via maps
-#include <algorithm> // to sort 
-#include <set> // to sort
 #include <iomanip> // for setting the width
+#include <vector> // to make sets
+#include <set> // to make sets
 
-
-class sortedArray{
-    public:
-    int sorted[6];
-
-    void add(int number,int counter){
-        sorted[number] = counter;
-    }
-    int sendSort(int number){
-        return (sorted[number]);
-    }
-};
 
 std::map<int,std::string> initializefirst(){
 
@@ -81,50 +69,23 @@ std::map<int,std::string> initializeDate(){
     return date;
 }
 
-
-void toSend(int* sorted){
-   
-    for (int i = 0; i < 6; i++){
-        std::cout << sorted[i] << "\n";
-    }
+std::string grabString(std::string question){
+    std::string userInput;
+    std::cout << question;
+    getline(std::cin,userInput);
+    return userInput;
 }
 
-
-void toSort(std::map<int,std::string> lastName, int sorted[6]){
-    std::map<int,std::string> lName = lastName;
-     
-    //std::cout << "in toSort\n";
-    std::string counter; 
-    int j;
-    //int* sorted;
-    //std::cout << "established everything\n";
-    for (int k = 0; k < 6; k++){
-        counter = "zzzzzzzzzzzzzzzzzzzzzzz";
-        for (int i = 0; i < 6; i++){
-           // std::cout << "in i: " << i << "\n";
-            if (counter > lName[i]){
-                counter = lName[i];
-                j = i;
-               // std::cout << "in if\n";
-            }
-        //std::cout << "counter = " << counter << "\n";
+std::set<int>  goFind(std::map<int, std::string> stringMap, std::string userInput, std::set<int> found){
+    for (int i = 0; i < stringMap.size(); i++){
+        if (stringMap[i].find(userInput) != std::string::npos){
+            //std::cout << "found!\n";
+            //std::cout << stringMap[i] << " has " << userInput << " so add " << i <<  "\n"; 
+            found.insert(i);
         }
-    lName[j] = "zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz";
-    //sorted[k] = j;
-    //sortNumber.add(k,j);
-    sorted[k] = j;
-    //std::cout << lastName[sortNumber.sorted[k]] << "\n";
     }
-   
-    //std::cout << &lastName[2] << "\n";
-    //for (int x = 0; x < 6; x++){
-        //std::cout << lastName[x] << "\n";
-    //}
-    counter = "";
-    //delete sorted;
+    return found;
 }
-
-
 
 
 int main (){
@@ -133,13 +94,23 @@ int main (){
     std::map<int, std::string> position  = initializePos();
     std::map<int, std::string> date      = initializeDate();
     std::map<int, std::string> fullName  = initializeName();
+    
+    std::string userInput = grabString("Enter a search String: ");
+    std::set<int> found;
+    
+    int counter;
+    
+    
+    found = goFind(position,userInput,found);
+    found = goFind(date,userInput,found);
+    found = goFind(fullName,userInput,found);
 
-    sortedArray sortNumber;
-    toSort(lastName,sortNumber.sorted);
+
+    //toSort(lastName,sortNumber.sorted);
     std::cout << "Name\t\t\t| Position\t\t| Seperation Date\n";
     std::cout << "------------------------|-----------------------|-------------------------------\n";
-    for (int i = 0; i < 6; i++){
-        std::cout << std::left  << std::setw(24) << std::setfill(' ') << fullName[sortNumber.sorted[i]] << "| " << std::left  << std::setw(22) << std::setfill(' ') << position[sortNumber.sendSort(i)] <<  "| " << date[sortNumber.sendSort(i)] << "\n";
+    for (int fun : found ){
+        std::cout << std::left  << std::setw(24) << std::setfill(' ') << fullName[fun] << "| " << std::left  << std::setw(22) << std::setfill(' ') << position[fun] <<  "| " << date[fun] << "\n";
     }
     return 0;
 
